@@ -1,19 +1,32 @@
 #!/bin/bash
-## script to run the analysis
+## small script to run the analysis
+analysis="main_HZZAnalysis"
 
-analysis=“H4l_Analysis” 
+##OPTION
+echo Which option should I run? 
+echo Options are:
+echo 0 = run all data and MC one after another
+echo 1 = run data only 
+echo 2,3 = run MC samples only 
+read varname
+echo Option is $varname
+option=$varname
 
-# calling and starting ROOT
-echo “ ROOT is getting started”
+echo Should I use PROOF? \(will make things faster\)
+echo Options are:
+echo 0 = NO
+echo 1 = YES
+read proofvarname
+echo PROOF option is $proofvarname
+parallel=$proofvarname
 
-root -l -b <<EOF
 
-## ROOT will be run in line and batch mode until the EOF command is met
-
-.L $analysis.C+
-## The analysis.C file will be loaded and compile as a shared library
-
-EOF
-
+## execute and run ROOT
+echo "starting ROOT"
 ##
-echo “End of execution"
+root -l -b << EOF
+.L $analysis.C+
+$analysis($parallel,$option)
+EOF
+##
+echo "end of ROOT execution"
