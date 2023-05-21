@@ -6,25 +6,47 @@
 ########################################
 
 # names of 12 analyses
-analysisCollection=("HWWAnalysis" "HZZAnalysis")
+analysisCollection=("WBosonAnalysis" "ZBosonAnalysis" "TTbarAnalysis" "SingleTopAnalysis" "WZDiBosonAnalysis" "ZZDiBosonAnalysis" "HWWAnalysis" "HZZAnalysis" "ZTauTauAnalysis" "HyyAnalysis" "SUSYAnalysis" "ZPrimeBoostedAnalysis")
 
 # location of their outputs
-outputpath=("../Analysis/Hl4/Output_HWWAnalysis" \
-"../Analysis/Hl4/Output_HZZAnalysis")
+outputpath=("../Analysis/WBosonAnalysis/Output_WBosonAnalysis" \
+"../Analysis/ZBosonAnalysis/Output_ZBosonAnalysis" \
+"../Analysis/TTbarAnalysis/Output_TTbarAnalysis" \
+"../Analysis/SingleTopAnalysis/Output_SingleTopAnalysis" \
+"../Analysis/WZDiBosonAnalysis/Output_WZDiBosonAnalysis" \
+"../Analysis/ZZDiBosonAnalysis/Output_ZZDiBosonAnalysis" \
+"../Analysis/HWWAnalysis/Output_HWWAnalysis" \
+"../Analysis/HZZAnalysis/Output_HZZAnalysis" \
+"../Analysis/ZTauTauAnalysis/Output_ZTauTauAnalysis" \
+"../Analysis/HyyAnalysis/Output_HyyAnalysis" \
+"../Analysis/SUSYAnalysis/Output_SUSYAnalysis" \
+"../Analysis/ZPrimeBoostedAnalysis/Output_ZPrimeBoostedAnalysis"
+)
 
 # begin
-echo 'Please input the analysis you'd like to plot'
-echo '0 = HWWAnalysis'
-echo '1 = HZZAnalysis'
+echo 'WELCOME!! Which analysis you want to plot?'
+echo 'Input your option now (and click <ENTER>):'
+echo '0 = WBosonAnalysis'
+echo '1 = ZBosonAnalysis'
+echo '2 = TTbarAnalysis'
+echo '3 = SingleTopAnalysis'
+echo '4 = WZDiBosonAnalysis'
+echo '5 = ZZDiBosonAnalysis'
+echo '6 = HWWAnalysis'
+echo '7 = HZZAnalysis'
+echo '8 = ZTauTauAnalysis'
+echo '9 = HyyAnalysis'
+echo '10 = SUSYAnalysis'
+echo '11 = ZPrimeBoostedAnalysis'
 
 read choice
 
 # check choices
-if (( ($choice == 0) || ($choice == 1) )) ; then
+if (( ($choice == 0) || ($choice == 1) || ($choice == 2) || ($choice == 3) ||($choice == 4) ||($choice == 5) ||($choice == 6) || ($choice == 7) || ($choice == 8) || ($choice == 9) ||($choice == 10) ||($choice == 11) )) ; then
     
   analysisName=${analysisCollection[${choice}]}
-  echo "Now, choose where to store the ${analysisName} output!"
-  echo "If the desire location is ${outputpath[${choice}]}: type 0"
+  echo "Now, choose the location of the ${analysisName} output!"
+  echo "If the location corresponds to ${outputpath[${choice}]}: type 0"
   echo 'If you have a custom location path: type 1'
   read option
 
@@ -39,11 +61,11 @@ if (( ($choice == 0) || ($choice == 1) )) ; then
 	m->SetOption("$analysisName");
     	m->SetInputLocation("$analysisPath")
     	m->run()
-    	.q
+	.q
 EOF
 
   elif (($option == 1)); then
-    echo "Please enter your analysis output path:"
+    echo "Please enter your analysis output path (and click <ENTER>):"
     read analysisPath
 
     root -l -b << EOF
@@ -57,11 +79,11 @@ EOF
 EOF
 
   else
-    echo "Invalid option"
+    echo "Invalid option!"
   fi
 
 
 else
-     echo "Analysis choice not found"
+     echo "Analysis choice not found!!"
 fi
 ########################################
