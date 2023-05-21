@@ -12,11 +12,11 @@ echo '0 = remove all output directories (in case you want to clean and begin fro
 read choice
 
 # names of 12 analyses
-analysisCollection=("WBosonAnalysis" "ZBosonAnalysis" "TTbarAnalysis" "SingleTopAnalysis" "WZDiBosonAnalysis" "ZZDiBosonAnalysis" "HWWAnalysis" "HZZAnalysis" "ZTauTauAnalysis" "HyyAnalysis" "SUSYAnalysis" "ZPrimeBoostedAnalysis")
+analysisCollection=("HWWanalysis" "HZZAnalysis")
 
 # creating the output directory for the Analyses codes
 if (( $choice == 1 )) ; then
-  for i in {0..11} ; do
+  for i in {0..1} ; do
     analysisName=${analysisCollection[$i]}
     echo "Creating the directory: Analysis/${analysisName}/Output_${analysisName}"
     mkdir Analysis/${analysisName}/Output_${analysisName}
